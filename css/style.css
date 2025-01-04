@@ -9,15 +9,16 @@ html {
 }
 
 body {
+    background-color: #dedede;
     padding: 5px;
     margin: 15px;
     font-size: 25px;
-    font-family: Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
 }
 
 h1 {
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     font-size: 1.95em;
 }
 
@@ -29,9 +30,34 @@ li {
     margin-top: 20px;
 }
 
-img {
-    border: 5px solid blue;
+figure {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+figure img {
+    display: block;
     width: 100%;
+    border: 5px solid teal;
+    border-radius: 35px;
+    box-sizing: border-box;
+}
+
+figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding-left: calc(5px + 10px);
+    padding-right: calc(5px + 10px);
 }
 
 .label {
@@ -39,45 +65,94 @@ img {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.bg-mobile {
-    background-color: lightblue;
-}
-
-.bg-tablet {
-    background-color: lightgreen;
-}
-
-.bg-laptop {
-    background-color: lightcoral;
-}
-
-.bg-desktop {
-    background-color: lightgoldenrodyellow;
-}
-
-.one-column-grid {
+.grid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: 10px;
 }
 
-@media (min-width: 772px) {
-    .one-column-grid {
-        grid-template-columns: 1fr 1fr;
+@media screen and (min-width: 772px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
     }
-    .one-column-grid div:last-child {
+
+    figure {
+        box-sizing: border-box;
+    }
+
+    figure:last-child {
         grid-column: span 2;
+    }
+
+    figure img {
+        height: 250px;
+        width: 250px;
+        object-fit: cover;
+        border-radius: 50%;
+        place-self: center;
+    }
+
+    figcaption {
+        border-bottom-left-radius: 0%;
+        border-bottom-right-radius: 0%;
+        font-size: 0.8rem;
+        position: relative;
+        width: 35%;
+        justify-self: center;
     }
 }
 
-@media (min-width: 992px) {
-    .one-column-grid {
-        grid-template-columns: 1fr 1fr;
+@media screen and (min-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .one-column-grid div:nth-child(3n) {
+
+    figure:nth-child(3n) {
         grid-column: span 2;
     }
-    .one-column-grid figure {
-        border-radius: 0; /* Remove border radius */
+
+    figure img {
+        border-radius: 0%;
+        border: 0;
+        width: 100%;
+        object-fit: cover;
+        border: 5px solid teal;
+    }
+
+    figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        padding-left: calc(5px + 10px);
+        padding-right: calc(5px + 10px);
+        font-size: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    figcaption {
+        background-color: #dedede;
+        color: black;
+        border: 5px solid teal;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    figcaption {
+        background-color: black;
+        color: white;
+        border: 5px solid black;
     }
 }
